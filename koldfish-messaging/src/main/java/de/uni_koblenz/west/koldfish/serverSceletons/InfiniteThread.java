@@ -41,7 +41,7 @@ public abstract class InfiniteThread extends Thread implements AutoCloseable {
 		}
 	}
 
-	public abstract void performOneIterationStep();
+	protected abstract void performOneIterationStep();
 
 	@Override
 	public boolean isInterrupted() {
