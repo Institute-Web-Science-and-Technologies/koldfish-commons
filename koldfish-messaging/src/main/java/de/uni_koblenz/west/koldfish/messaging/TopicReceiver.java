@@ -1,7 +1,9 @@
 package de.uni_koblenz.west.koldfish.messaging;
 
 import javax.jms.JMSException;
+import javax.jms.Message;
 import javax.jms.MessageConsumer;
+import javax.jms.ObjectMessage;
 
 import de.uni_koblenz.west.koldfish.messages.KoldfishMessage;
 
@@ -22,15 +24,30 @@ public class TopicReceiver extends KoldfishMessagingBase {
 	}
 
 	public KoldfishMessage receiveMessage() throws JMSException {
-		return (KoldfishMessage) consumer.receive();
+		Message message = consumer.receive();
+		if (message != null) {
+			return (KoldfishMessage) ((ObjectMessage) message).getObject();
+		} else {
+			return null;
+		}
 	}
 
 	public KoldfishMessage receiveMessage(long timeOut) throws JMSException {
-		return (KoldfishMessage) consumer.receive(timeOut);
+		Message message = consumer.receive(timeOut);
+		if (message != null) {
+			return (KoldfishMessage) ((ObjectMessage) message).getObject();
+		} else {
+			return null;
+		}
 	}
 
 	public KoldfishMessage receiveMessageNoWait() throws JMSException {
-		return (KoldfishMessage) consumer.receiveNoWait();
+		Message message = consumer.receiveNoWait();
+		if (message != null) {
+			return (KoldfishMessage) ((ObjectMessage) message).getObject();
+		} else {
+			return null;
+		}
 	}
 
 	@Override
