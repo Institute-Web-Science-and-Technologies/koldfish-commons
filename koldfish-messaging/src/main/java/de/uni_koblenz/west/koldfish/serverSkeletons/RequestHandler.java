@@ -2,6 +2,10 @@ package de.uni_koblenz.west.koldfish.serverSkeletons;
 
 import javax.jms.JMSException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.LoggerContext;
+import org.apache.logging.log4j.core.config.Configurator;
+
 import de.uni_koblenz.west.koldfish.messages.KoldfishMessage;
 import de.uni_koblenz.west.koldfish.messaging.TopicReceiver;
 
@@ -40,6 +44,12 @@ public abstract class RequestHandler extends InfiniteThread {
 		super.close();
 		// TODO close logger if not done by shutdown hook
 		receiver.close();
+		
+		if( LogManager.getContext() instanceof LoggerContext ) {
+            Configurator.shutdown((LoggerContext)LogManager.getContext());
+        } else {
+            log.warn("Unable to shutdown log4j2");
+        }
 	}
 
 }
