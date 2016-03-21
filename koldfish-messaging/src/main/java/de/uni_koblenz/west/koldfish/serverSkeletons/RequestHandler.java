@@ -1,4 +1,4 @@
-package de.uni_koblenz.west.koldfish.serverSceletons;
+package de.uni_koblenz.west.koldfish.serverSkeletons;
 
 import javax.jms.JMSException;
 
