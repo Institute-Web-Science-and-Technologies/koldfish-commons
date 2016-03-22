@@ -19,7 +19,7 @@ public abstract class KoldfishMessagingBase implements AutoCloseable {
 			String brokerURL, String... trustedPackages) throws JMSException {
 		connection = ConnectionManager.getConnection(userName, password,
 				brokerURL, trustedPackages);
-		session = connection.createSession();
+		session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 	}
 
 	protected Session getSession() {
