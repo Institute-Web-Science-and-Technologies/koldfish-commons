@@ -1,4 +1,4 @@
-package de.uni_koblenz.west.koldfish.messages;
+package de.unikoblenz.west.koldfish.messages;
 
 import java.io.Serializable;
 

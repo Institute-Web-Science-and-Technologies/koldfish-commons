@@ -1,9 +1,9 @@
-package de.uni_koblenz.west.koldfish.messaging;
+package de.unikoblenz.west.koldfish.messaging;
 
 import javax.jms.JMSException;
 import javax.jms.MessageProducer;
 
-import de.uni_koblenz.west.koldfish.messages.KoldfishMessage;
+import de.unikoblenz.west.koldfish.messages.KoldfishMessage;
 
 public class TopicSender extends KoldfishMessagingBase {
 

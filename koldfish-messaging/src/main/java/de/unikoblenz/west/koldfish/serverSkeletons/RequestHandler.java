@@ -1,9 +1,9 @@
-package de.uni_koblenz.west.koldfish.serverSkeletons;
+package de.unikoblenz.west.koldfish.serverSkeletons;
 
 import javax.jms.JMSException;
 
-import de.uni_koblenz.west.koldfish.messages.KoldfishMessage;
-import de.uni_koblenz.west.koldfish.messaging.TopicReceiver;
+import de.unikoblenz.west.koldfish.messages.KoldfishMessage;
+import de.unikoblenz.west.koldfish.messaging.TopicReceiver;
 
 public abstract class RequestHandler extends InfiniteThread {
 

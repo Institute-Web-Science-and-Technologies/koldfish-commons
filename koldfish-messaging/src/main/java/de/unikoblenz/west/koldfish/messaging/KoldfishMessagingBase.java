@@ -1,4 +1,4 @@
-package de.uni_koblenz.west.koldfish.messaging;
+package de.unikoblenz.west.koldfish.messaging;
 
 import javax.jms.Connection;
 import javax.jms.JMSException;

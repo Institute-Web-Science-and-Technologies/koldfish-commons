@@ -1,4 +1,4 @@
-package de.uni_koblenz.west.koldfish.messaging;
+package de.unikoblenz.west.koldfish.messaging;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package de.uni_koblenz.west.koldfish.serverSkeletons;
+package de.unikoblenz.west.koldfish.serverSkeletons;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

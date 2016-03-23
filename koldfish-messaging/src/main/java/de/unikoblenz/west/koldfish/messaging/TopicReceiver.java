@@ -1,33 +1,26 @@
-package de.uni_koblenz.west.koldfish.messaging;
+package de.unikoblenz.west.koldfish.messaging;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
 import javax.jms.ObjectMessage;
-import javax.jms.TemporaryQueue;
 
-import de.uni_koblenz.west.koldfish.messages.KoldfishMessage;
+import de.unikoblenz.west.koldfish.messages.KoldfishMessage;
 
-public class TemporaryQueueReceiver extends KoldfishMessagingBase {
-
-	private final TemporaryQueue queue;
+public class TopicReceiver extends KoldfishMessagingBase {
 
 	private final MessageConsumer consumer;
 
-	public TemporaryQueueReceiver(String userName, String password,
-			String brokerURL) throws JMSException {
-		this(userName, password, brokerURL, new String[0]);
+	public TopicReceiver(String userName, String password, String brokerURL,
+			String topicName) throws JMSException {
+		this(userName, password, brokerURL, topicName, new String[0]);
 	}
 
-	public TemporaryQueueReceiver(String userName, String password,
-			String brokerURL, String... trustedPackages) throws JMSException {
+	public TopicReceiver(String userName, String password, String brokerURL,
+			String topicName, String... trustedPackages) throws JMSException {
 		super(userName, password, brokerURL, trustedPackages);
-		queue = getSession().createTemporaryQueue();
-		consumer = getSession().createConsumer(queue);
-	}
-
-	public String getQueueName() throws JMSException {
-		return queue.getQueueName();
+		consumer = getSession()
+				.createConsumer(getSession().createTopic(topicName));
 	}
 
 	public KoldfishMessage receiveMessage() throws JMSException {
