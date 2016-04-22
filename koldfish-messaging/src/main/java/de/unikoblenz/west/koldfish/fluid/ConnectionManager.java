@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.jms.*;
+import javax.jms.Queue;
 import java.util.*;
 
 /**
@@ -36,7 +37,7 @@ public class ConnectionManager implements AutoCloseable {
 
     private ConnectionManager() {
         try {
-            properties.load(getClass().getResourceAsStream(PROPERTY_FILE_PATH));
+            properties.load(getClass().getClassLoader().getResourceAsStream(PROPERTY_FILE_PATH));
             log.debug("Loaded config from {}", PROPERTY_FILE_PATH);
         } catch (Exception e) {
             log.warn("Could not read from {} - using default values for connection.", PROPERTY_FILE_PATH);
@@ -139,6 +140,21 @@ public class ConnectionManager implements AutoCloseable {
     public void sendToTopic(String topicName, KoldfishMessage message) throws JMSException {
         if (!destinations.containsKey("topic://"+topicName)) createTopic(topicName);
         send(destinations.get("topic://"+topicName), message);
+    }
+
+    // These three methods are not nice :(
+    // but right now I don't have a proper solution
+    public void sendToQueue(String queueName, javax.jms.Message message) throws JMSException {
+        if (!destinations.containsKey("queue://"+queueName)) createQueue(queueName);
+        send(destinations.get("queue://"+queueName), message);
+    }
+
+    public Queue createTemporaryQueue() throws JMSException {
+        return (session.createTemporaryQueue());
+    }
+
+    public MessageConsumer createConsumer(Destination destination) throws JMSException {
+        return session.createConsumer(destination);
     }
 
     public boolean isConnectionActive() {
