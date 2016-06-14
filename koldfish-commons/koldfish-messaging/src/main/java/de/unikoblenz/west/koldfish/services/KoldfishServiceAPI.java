@@ -1,7 +1,7 @@
 package de.unikoblenz.west.koldfish.services;
 
 /**
- * provides a standa for Kold
+ * provides a standard interface for Koldfish services.
  * 
  * @author lkastler
  *
