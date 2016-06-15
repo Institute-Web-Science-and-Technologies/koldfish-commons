@@ -44,7 +44,9 @@ public class ConnectionManagerImpl implements ConnectionManager {
       Collections.synchronizedMap(new HashMap<Destination, CloseableReceiver>());
 
   public ConnectionManagerImpl(String... trustedPackages) throws JMSException {
-    ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory();
+    ActiveMQConnectionFactory factory =
+        // FIXME this must not be fixed values!
+        new ActiveMQConnectionFactory("admin", "admin", "tcp://141.26.208.203:61616");
     if (trustedPackages == null || trustedPackages.length == 0) {
       // FIXME hardcore hack:
       // http://activemq.apache.org/objectmessage.html
