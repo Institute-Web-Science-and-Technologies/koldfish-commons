@@ -51,7 +51,7 @@ public class ReceiverImpl implements CloseableReceiver {
                 }
               }
             } else {
-              log.debug("no koldfish");
+              log.debug("no koldfish message");
             }
           } catch (JMSException e) {
             log.error(e);
@@ -61,7 +61,7 @@ public class ReceiverImpl implements CloseableReceiver {
 
     });
 
-    log.debug("started");
+    log.debug("started, using {}", consumer);
 
   }
 
@@ -75,7 +75,7 @@ public class ReceiverImpl implements CloseableReceiver {
   public void addListener(KoldfishMessageListener listener) {
     synchronized (listeners) {
       listeners.add(listener);
-      log.debug("listener added");
+      log.debug("listener added: {}", listener);
     }
   }
 
@@ -89,7 +89,7 @@ public class ReceiverImpl implements CloseableReceiver {
   public void removeListener(KoldfishMessageListener listener) {
     synchronized (listeners) {
       listeners.remove(listener);
-      log.debug("listener removed");
+      log.debug("listener removed: {}", listener);
     }
   }
 

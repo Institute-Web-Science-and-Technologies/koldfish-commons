@@ -16,7 +16,6 @@ import javax.jms.MessageConsumer;
 import javax.jms.MessageProducer;
 import javax.jms.Session;
 
-import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,35 +42,26 @@ public class ConnectionManagerImpl implements ConnectionManager {
   private Map<Destination, CloseableReceiver> receivers =
       Collections.synchronizedMap(new HashMap<Destination, CloseableReceiver>());
 
-  public ConnectionManagerImpl(String... trustedPackages) throws JMSException {
+  public ConnectionManagerImpl() throws JMSException {
     ActiveMQConnectionFactory factory =
         // FIXME this must not be fixed values!
         new ActiveMQConnectionFactory("admin", "admin", "tcp://141.26.208.203:61616");
-    if (trustedPackages == null || trustedPackages.length == 0) {
-      // FIXME hardcore hack:
-      // http://activemq.apache.org/objectmessage.html
-      factory.setTrustAllPackages(true);
 
-    } else {
-      List<String> trustedPackagesList = new ArrayList<String>();
-      trustedPackagesList.add("java.lang");
-      trustedPackagesList.add("java.util");
-      trustedPackagesList.add("org.apache.activemq");
-      trustedPackagesList.add("org.fusesource.hawtbuf");
-      trustedPackagesList.add("com.thoughtworks.xstream.mapper");
-      trustedPackagesList.add("de.unikoblenz.west.koldfish.messages");
+    List<String> trustedPackagesList = new ArrayList<String>();
+    trustedPackagesList.add("java.lang");
+    trustedPackagesList.add("java.util");
+    trustedPackagesList.add("org.apache.activemq");
+    trustedPackagesList.add("org.fusesource.hawtbuf");
+    trustedPackagesList.add("com.thoughtworks.xstream.mapper");
+    trustedPackagesList.add("de.unikoblenz.west.koldfish.messages");
 
-      for (String trustedPackage : trustedPackages) {
-        trustedPackagesList.add(trustedPackage);
-      }
+    factory.setTrustedPackages(trustedPackagesList);
 
-      factory.setTrustedPackages(trustedPackagesList);
-    }
     connection = factory.createConnection();
     session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
     producer = session.createProducer(null);
 
-    log.debug("created: {}", ActiveMQConnection.DEFAULT_BROKER_URL);
+    log.debug("created: {}", factory.getBrokerURL());
   }
 
   /*
