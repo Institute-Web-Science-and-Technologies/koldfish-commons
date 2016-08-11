@@ -32,7 +32,9 @@
 					<executions>
 						<execution>
 							<id>attach-sources</id>
-							<goals><goal>jar</goal></goals>
+							<goals>
+								<goal>jar</goal>
+							</goals>
 						</execution>
 					</executions>
 				</plugin>
@@ -44,7 +46,9 @@
 					<executions>
 						<execution>
 							<id>attach-javadocs</id>
-							<goals><goal>jar</goal></goals>
+							<goals>
+								<goal>jar</goal>
+							</goals>
 						</execution>
 					</executions>
 				</plugin>
@@ -52,19 +56,19 @@
 		</pluginManagement>
 	</build>
 	<repositories>
-		<!-- WeST Maven Repository -->
 		<repository>
-			<name>WeST Koldfish Maven Repository</name>
+			<!-- WeST Maven Repository -->
 			<id>koldfish-maven</id>
-			<url>http://141.26.209.1:8080/nexus/content/repositories/releases/</url>
+			<name>WeST Koldfish Maven Releases Repository</name>
+			<url>http://141.26.209.1:8080/nexus/content/repositories/releases</url>
 		</repository>
 	</repositories>
 	<distributionManagement>
-		<!-- WeST Maven Repository -->
 		<repository>
-			<name>WeST Koldfish Maven Repository</name>
+			<!-- WeST Maven Repository -->
 			<id>koldfish-maven</id>
-			<url>http://141.26.209.1:8080/nexus/content/repositories/releases/</url>
+			<name>WeST Koldfish Maven Releases Repository</name>
+			<url>http://141.26.209.1:8080/nexus/content/repositories/releases</url>
 		</repository>
 	</distributionManagement>
 </project>
