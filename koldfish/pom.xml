@@ -3,11 +3,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.unikoblenz.west.koldfish</groupId>
 	<artifactId>koldfish</artifactId>
-	<version>0.0.1</version>
+	<version>1.0.0</version>
 	<packaging>pom</packaging>
 	<name>Parent POM to all Koldfish projects</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven-id>koldfish-maven</maven-id>
+		<maven-release-name>WeST Koldfish Maven Releases Repository</maven-release-name>
+		<maven-release-url>https://maven.west.uni-koblenz.de/nexus/content/repositories/releases</maven-release-url>
 	</properties>
 	<build>
 		<!-- Not sure if we should add that -->
@@ -58,17 +61,17 @@
 	<repositories>
 		<repository>
 			<!-- WeST Maven Repository -->
-			<id>koldfish-maven</id>
-			<name>WeST Koldfish Maven Releases Repository</name>
-			<url>http://141.26.209.1:8080/nexus/content/repositories/releases</url>
+			<id>${maven-id}</id>
+			<name>${maven-release-name}</name>
+			<url>${maven-release-url}</url>
 		</repository>
 	</repositories>
 	<distributionManagement>
 		<repository>
 			<!-- WeST Maven Repository -->
-			<id>koldfish-maven</id>
-			<name>WeST Koldfish Maven Releases Repository</name>
-			<url>http://141.26.209.1:8080/nexus/content/repositories/releases</url>
+			<id>${maven-id}</id>
+			<name>${maven-release-name}</name>
+			<url>${maven-release-url}</url>
 		</repository>
 	</distributionManagement>
 </project>
