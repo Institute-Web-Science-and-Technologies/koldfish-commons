@@ -60,7 +60,7 @@
 			<!-- WeST Maven Repository -->
 			<id>koldfish-maven</id>
 			<name>WeST Koldfish Maven Releases Repository</name>
-			<url>http://141.26.209.1:8080/nexus/content/repositories/releases</url>
+			<url>https://maven.west.uni-koblenz.de:8443/repository/koral/</url>
 		</repository>
 	</repositories>
 	<distributionManagement>
@@ -68,7 +68,7 @@
 			<!-- WeST Maven Repository -->
 			<id>koldfish-maven</id>
 			<name>WeST Koldfish Maven Releases Repository</name>
-			<url>http://141.26.209.1:8080/nexus/content/repositories/releases</url>
+			<url>https://maven.west.uni-koblenz.de:8443/repository/koral/</url>
 		</repository>
 	</distributionManagement>
 </project>
